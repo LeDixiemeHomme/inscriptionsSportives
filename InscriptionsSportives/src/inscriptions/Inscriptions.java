@@ -200,7 +200,7 @@ public class Inscriptions implements Serializable
 				} 
 				catch (IOException e)
 				{
-					System.out.println("Erreur de la fonction readObject()");
+					System.out.println("Eerreur de la fonction readObject()");
 				}
 		}	
 	}
