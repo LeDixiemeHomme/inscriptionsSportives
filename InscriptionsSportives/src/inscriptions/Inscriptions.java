@@ -198,7 +198,10 @@ public class Inscriptions implements Serializable
 					if (ois != null)
 						ois.close();
 				} 
-				catch (IOException e){}
+				catch (IOException e)
+				{
+					System.out.println("Erreur de la fonction readObject()");
+				}
 		}	
 	}
 	
@@ -228,7 +231,10 @@ public class Inscriptions implements Serializable
 				if (oos != null)
 					oos.close();
 			} 
-			catch (IOException e){}
+			catch (IOException e)
+			{
+				System.out.println("Erreur de la fonction sauvegarder()");
+			}
 		}
 	}
 	
