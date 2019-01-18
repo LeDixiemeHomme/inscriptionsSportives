@@ -4,6 +4,8 @@ import java.util.Collections;
 import java.util.Set;
 import java.util.TreeSet;
 
+import static org.junit.Assert.assertTrue;
+
 /**
  * Représente une personne physique pouvant s'inscrire à une compétition.
  */

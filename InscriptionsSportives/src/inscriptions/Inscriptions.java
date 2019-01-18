@@ -12,6 +12,10 @@ import java.time.LocalDate;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
+import inscriptions.Equipe;
+
+import static org.junit.Assert.assertTrue;
+
 /**
  * Point d'entrée dans l'application, un seul objet de type Inscription
  * permet de gérer les compétitions, candidats (de type equipe ou personne)

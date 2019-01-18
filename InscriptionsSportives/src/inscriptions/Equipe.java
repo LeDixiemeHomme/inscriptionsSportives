@@ -5,6 +5,8 @@ import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
+import static org.junit.Assert.assertTrue;
+
 /**
  * Représente une Equipe. C'est-à-dire un ensemble de personnes pouvant 
  * s'inscrire à une compétition.
