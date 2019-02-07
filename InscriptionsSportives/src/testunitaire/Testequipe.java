@@ -49,7 +49,6 @@ class Testequipe {
 		int size = equipe.getMembres().size();
 		assertTrue(equipe.getMembres().contains(personne));
 		assertEquals(size,equipe.getMembres().size());
-
 }
 	
 	@Test

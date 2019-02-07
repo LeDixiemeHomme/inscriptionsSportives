@@ -86,7 +86,7 @@ class Testcompetition {
     @Test
     public void testAddEquipe() {
         Inscriptions inscriptions = Inscriptions.getInscriptions();
-        Competition competition = inscriptions.createCompetition("nomComp",LocalDate.now().plusDays(3), false);
+        Competition competition = inscriptions.createCompetition("nomComp",LocalDate.now().plusDays(3), true);
         Equipe equipe = inscriptions.createEquipe("nomEquipe");  
         competition.add(equipe);
         assertTrue(competition.getCandidats().contains(equipe));
