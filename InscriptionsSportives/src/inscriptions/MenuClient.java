@@ -13,7 +13,7 @@ public class MenuClient {
      */
 
     public Menu menuHome() {
-        Menu menu = new Menu("Menu Inscriptions Sportives");
+        Menu menu = new Menu("Menu InscriptionsSportives");
         /* ajout du menu competition */
         menu.add( CompetitionMenu() );
         /* ajout du menu equipe*/
@@ -37,7 +37,7 @@ public class MenuClient {
     }
     /* Sauvegarder et quitter le menu */
     private Option saveAndQuit() {
-        return new Option("Save et Quitter", "s", new Action() {
+        return new Option("Sauvegarder et Quitter", "s", new Action() {
             @Override
             public void optionSelected() {
                 try {
@@ -60,7 +60,7 @@ public class MenuClient {
     /* Menu pour les Competitions */
 
     private Menu CompetitionMenu() {
-        Menu menu = new Menu("Menu Competitions", "Competition", "a");
+        Menu menu = new Menu("Menu Compétitions", "Compétition", "a");
         menu.add( addCompetition() );
         menu.add( displayCompetition() );
         menu.add( manageCompetition() );
@@ -71,7 +71,7 @@ public class MenuClient {
 
     /* Affichage competitions */
     private Option displayCompetition() { return new Option(
-            "Afficher competitions", "2",
+            "Afficher Compétitions", "b",
             new Action() {
                 @Override
                 public void optionSelected() {
@@ -82,17 +82,17 @@ public class MenuClient {
     /* Ajout competitions */
     private Option addCompetition() {
         return new Option(
-                "Ajouter competition", "1",
+                "Ajouter Compétition", "a",
                 new Action() {
                     @Override
                     public void optionSelected()
                     {
-                        String nomCompetition = InOut.getString("Nom competition: ");
-                        System.out.println("Fin competition :");
+                        String nomCompetition = InOut.getString("Nom Compétition: ");
+                        System.out.println("Fin Compétition :");
                         int day = InOut.getInt("  Jour (jj) : ");
                         int month = InOut.getInt("  Mois (mm) : ");
                         int year = InOut.getInt("  Annee (yyyy) : ");
-                        int choice = InOut.getInt("competition en equipe ? (2 pour Non, 1 pour oui) ");
+                        int choice = InOut.getInt("Compétition en Equipe ? (2 pour Non, 1 pour oui) ");
                         boolean isTeam = false;
                         if(choice == 1){
                             isTeam = true;
@@ -108,7 +108,7 @@ public class MenuClient {
     /* Supprimer competitions */
     private Option deleteCompetition() {
         return new List<>(
-                "Supprimer competition", "1",
+                "Supprimer Compétition", "a",
                 new ListData<Competition>()
                 {
                     @Override
@@ -128,7 +128,7 @@ public class MenuClient {
     }
     /* Modifier competitions */
     private Menu manageCompetition() {
-        Menu menu = new Menu("Menu Gestion competitions", "Gestion competitions", "3");
+        Menu menu = new Menu("Menu Gestion Compétitions", "Gestion Compétitions", "c");
         menu.add( deleteCompetition() );
         menu.add( modifyCompetition() );
         menu.addBack("x");
@@ -137,7 +137,7 @@ public class MenuClient {
 
     private Option modifyCompetition() {
         return new List<>(
-                "Modifier competition", "2",
+                "Modifier Compétition", "b",
                 new ListData<Competition>()
                 {
                     @Override
@@ -156,7 +156,7 @@ public class MenuClient {
     }
     /* Menu modification equipe */
     private Option modifyCompetition(Competition competition) {
-        Menu menu = new Menu("Menu Modification competition : " + competition.getNom());
+        Menu menu = new Menu("Menu Modification Compétition : " + competition.getNom());
         menu.add(changerNomCompetition(competition));
         menu.add(changerDateCompetition(competition));
 
@@ -172,11 +172,11 @@ public class MenuClient {
     /* changer nom competitions */
     private Option changerNomCompetition(Competition competition) {
         return new Option(
-                "Changer nom competition", "1",
+                "Changer nom Compétition", "a",
                 new Action() {
                     @Override
                     public void optionSelected() {
-                        competition.setNom(InOut.getString("Nouveau nom competition : "));
+                        competition.setNom(InOut.getString("Nouveau nom Compétition : "));
                     }
                 }
         );
@@ -184,7 +184,7 @@ public class MenuClient {
     /* changer date de fin competitions */
     private Option changerDateCompetition(Competition competition) {
         return new Option(
-                "Changer date de fin competition", "2",
+                "Changer date de fin competition", "b",
                 new Action() {
                     @Override
                     public void optionSelected() {
@@ -201,7 +201,7 @@ public class MenuClient {
     /* Ajout personne competitions */
     private Option addPersonToCompetition(Competition competition) {
         return new List<>(
-                "Ajouter personne à la competition", "3",
+                "Ajouter personne à la competition", "c",
                 new ListData<Personne>()
                 {
                     @Override
@@ -222,7 +222,7 @@ public class MenuClient {
     /* Ajout equipe competitions */
     private Option addEquipeToCompetition(Competition competition) {
         return new List<>(
-                "Ajouter equipe à la competition", "4",
+                "Ajouter equipe à la competition", "d",
                 new ListData<Equipe>()
                 {
                     @Override
@@ -254,7 +254,7 @@ public class MenuClient {
     }
     /* Afficher equipe */
     private Option displayEquipe() { return new Option(
-            "Afficher equipes", "2",
+            "Afficher equipes", "b",
             new Action() {
                 @Override
                 public void optionSelected() {
@@ -264,7 +264,7 @@ public class MenuClient {
     }
     /* Ajout equipe */
     private Option addEquipe() { return new Option(
-            "Ajouter equipe", "1",
+            "Ajouter equipe", "a",
             new Action()
             {
                 @Override
@@ -278,7 +278,7 @@ public class MenuClient {
     /* Supprimer equipe */
     private Option deleteEquipe() {
         return new List<>(
-                "Supprimer equipe", "1",
+                "Supprimer equipe", "a",
                 new ListData<Equipe>()
                 {
                     @Override
@@ -298,7 +298,7 @@ public class MenuClient {
     }
     /* Gestion equipe */
     private Menu manageEquipe() {
-        Menu menu = new Menu("Menu Gestion equipes", "Gestion equipes","3");
+        Menu menu = new Menu("Menu Gestion equipes", "Gestion equipes","c");
         menu.add( deleteEquipe() );
         menu.add( modifyEquipe() );
         menu.addBack("x");
@@ -307,7 +307,7 @@ public class MenuClient {
     /* Modifier equipe */
     private Option modifyEquipe() {
         return new List<>(
-                "Modifier equipe", "2",
+                "Modifier equipe", "b",
                 new ListData<Equipe>(){
 
                     @Override
@@ -338,7 +338,7 @@ public class MenuClient {
     /* Changer nom equipe */
     private Option changerNomEquipe(Equipe equipe) {
         return new Option(
-                "Changer nom equipe", "1",
+                "Changer nom equipe", "a",
                 new Action() {
                     @Override
                     public void optionSelected() {
@@ -350,7 +350,7 @@ public class MenuClient {
     /* Ajout personne equipe */
     private Option addPersonToEquipe(Equipe equipe) {
         return new List<>(
-                "Ajouter personne a l'equipe", "2",
+                "Ajouter personne a l'equipe", "b",
                 new ListData<Personne>()
                 {
                     @Override
@@ -371,7 +371,7 @@ public class MenuClient {
     /* Supprimer personne equipe */
     private Option removePersonToEquipe(Equipe equipe) {
         return new List<>(
-                "Supprimer personne de l'equipe", "3",
+                "Supprimer personne de l'equipe", "c",
                 new ListData<Personne>()
                 {
                     @Override
@@ -402,7 +402,7 @@ public class MenuClient {
     }
     /* Afficher personne */
     private Option displayPersonne() { return new Option(
-            "Afficher personnes", "2",
+            "Afficher personnes", "b",
             new Action() {
                 @Override
                 public void optionSelected() {
@@ -413,7 +413,7 @@ public class MenuClient {
     }
     /* Ajout personne */
     private Option addPersonne() {
-        return new Option("Ajouter personne", "1",
+        return new Option("Ajouter personne", "a",
                 new Action() {
                     @Override
                     public void optionSelected()
@@ -429,7 +429,7 @@ public class MenuClient {
     /* Supprimer personne */
     private Option deletePersonne() {
         return new List<>(
-                "Supprimer personne", "1",
+                "Supprimer personne", "a",
                 new ListData<Personne>(){
 
                     @Override
@@ -449,7 +449,7 @@ public class MenuClient {
     }
     /* Gestion personne */
     private Menu managePers() {
-        Menu menu = new Menu("Menu Gestion personnes", "Gestion personnes","3");
+        Menu menu = new Menu("Menu Gestion personnes", "Gestion personnes","c");
         menu.add( deletePersonne() );
         menu.add( modifyPersonne() );
         menu.addBack("x");
@@ -458,7 +458,7 @@ public class MenuClient {
     /* Modifier personne */
     private Option modifyPersonne() {
         return new List<>(
-            "Modifier personne", "2",
+            "Modifier personne", "b",
             new ListData<Personne>(){
 
                 @Override
@@ -488,7 +488,7 @@ public class MenuClient {
     /* Changer nom personne */
     private Option changerName(Personne personne) {
         return new Option(
-                "Changer nom", "1",
+                "Changer nom", "a",
                 new Action() {
                     @Override
                     public void optionSelected() {
@@ -500,7 +500,7 @@ public class MenuClient {
     /* Changer prenom personne */
     private Option changerFirstname(Personne personne) {
         return new Option(
-                "Changer prenom", "2",
+                "Changer prenom", "b",
                 new Action() {
                     @Override
                     public void optionSelected() {
@@ -512,7 +512,7 @@ public class MenuClient {
     /* Changer email personne */
     private Option changerMail(Personne personne) {
         return new Option(
-                "Changer l'email", "3",
+                "Changer l'email", "c",
                 new Action() {
                     @Override
                     public void optionSelected() {
