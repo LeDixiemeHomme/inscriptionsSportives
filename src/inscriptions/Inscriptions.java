@@ -244,33 +244,33 @@ public class Inscriptions implements Serializable
 			+ "\nCompetitions  " + getCompetitions().toString();
 	}
 	
-	public static void main(String[] args)
-	{
-		Inscriptions inscriptions = Inscriptions.getInscriptions();
-		SortedSet<Competition> competitions = inscriptions.getCompetitions();
-		Competition flechettes = inscriptions.createCompetition("Mondial de fléchettes", LocalDate.of(2020, 01, 01), false);
-		Personne tony = inscriptions.createPersonne("Tony", "Dent de plomb", "azerty"), 
-				 boris = inscriptions.createPersonne("Boris", "le Hachoir", "ytreza");
-		flechettes.add(tony);
-		Equipe lesManouches = inscriptions.createEquipe("Les Manouches");
-		lesManouches.add(boris);
-		lesManouches.add(tony);
-		System.out.println(inscriptions);
-		System.out.println(competitions);
-		System.out.println(flechettes.getDateCloture());
-		flechettes.setDateCloture(LocalDate.of(2021, 01, 01));
-		System.out.println(flechettes.getDateCloture());	
-		boris.delete();
-		flechettes.delete();
-		lesManouches.delete();
-		System.out.println(inscriptions);
-		try
-		{
-			inscriptions.sauvegarder();
-		} 
-		catch (IOException e)
-		{
-			System.out.println("Sauvegarde impossible." + e);
-		}
-	}
+//	public static void main(String[] args)
+//	{
+//		Inscriptions inscriptions = Inscriptions.getInscriptions();
+//		SortedSet<Competition> competitions = inscriptions.getCompetitions();
+//		Competition flechettes = inscriptions.createCompetition("Mondial de fléchettes", LocalDate.of(2020, 01, 01), false);
+//		Personne tony = inscriptions.createPersonne("Tony", "Dent de plomb", "azerty"), 
+//				 boris = inscriptions.createPersonne("Boris", "le Hachoir", "ytreza");
+//		flechettes.add(tony);
+//		Equipe lesManouches = inscriptions.createEquipe("Les Manouches");
+//		lesManouches.add(boris);
+//		lesManouches.add(tony);
+//		System.out.println(inscriptions);
+//		System.out.println(competitions);
+//		System.out.println(flechettes.getDateCloture());
+//		flechettes.setDateCloture(LocalDate.of(2021, 01, 01));
+//		System.out.println(flechettes.getDateCloture());	
+//		boris.delete();
+//		flechettes.delete();
+//		lesManouches.delete();
+//		System.out.println(inscriptions);
+//		try
+//		{
+//			inscriptions.sauvegarder();
+//		} 
+//		catch (IOException e)
+//		{
+//			System.out.println("Sauvegarde impossible." + e);
+//		}
+//	}
 }
