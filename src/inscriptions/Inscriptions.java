@@ -6,20 +6,18 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+
 import java.util.Collections;
-import java.util.Set;
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
-import inscriptions.Equipe;
-
-import static org.junit.Assert.assertTrue;
-
+import esDialUtil.DialogUtil;
+import hibernateis.passerelle;
 /**
- * Point d'entrÈe dans l'application, un seul objet de type Inscription
- * permet de gÈrer les compÈtitions, candidats (de type equipe ou personne)
- * ainsi que d'inscrire des candidats ‡† des compÈtition.
+ * Point d'entr√©e dans l'application, un seul objet de type Inscription
+ * permet de g√©rer les comp√©titions, candidats (de type equipe ou personne)
+ * ainsi que d'inscrire des candidats √  des comp√©tition.
  */
 
 public class Inscriptions implements Serializable
@@ -36,7 +34,7 @@ public class Inscriptions implements Serializable
 	}
 	
 	/**
-	 * Retourne les compÈtitions.
+	 * Retourne les comp√©titions.
 	 * @return
 	 */
 	
@@ -46,7 +44,7 @@ public class Inscriptions implements Serializable
 	}
 	
 	/**
-	 * Retourne tous les candidats (personnes et Èquipes confondues).
+	 * Retourne tous les candidats (personnes et √©quipes confondues).
 	 * @return
 	 */
 	
@@ -70,7 +68,7 @@ public class Inscriptions implements Serializable
 	}
 
 	/**
-	 * Retourne toutes les Èquipes.
+	 * Retourne toutes les √©quipes.
 	 * @return
 	 */
 	
@@ -84,26 +82,26 @@ public class Inscriptions implements Serializable
 	}
 
 	/**
-	 * CrÈÈe une compÈtition. Ceci est le seul moyen, il n'y a pas
+	 * Cr√©√©e une comp√©tition. Ceci est le seul moyen, il n'y a pas
 	 * de constructeur public dans {@link Competition}.
 	 * @param nom
-	 * @param dateCloture
+	 * @param <
 	 * @param enEquipe
 	 * @return
 	 */
 	
 	public Competition createCompetition(String nom, 
-			LocalDate dateCloture, boolean enEquipe)
+			Date date, boolean enEquipe)
 	{
-		Competition competition = new Competition(this, nom, dateCloture, enEquipe);
+		Competition competition = new Competition(this, nom, date, enEquipe);
 		competitions.add(competition);
+		passerelle.save(competition);
 		return competition;
 	}
 
 	/**
-	 * CrÈÈe un Candidat de type Personne. Ceci est le seul moyen, il n'y a pas
+	 * Cr√©√©e une Candidat de type Personne. Ceci est le seul moyen, il n'y a pas
 	 * de constructeur public dans {@link Personne}.
-
 	 * @param nom
 	 * @param prenom
 	 * @param mail
@@ -114,11 +112,12 @@ public class Inscriptions implements Serializable
 	{
 		Personne personne = new Personne(this, nom, prenom, mail);
 		candidats.add(personne);
+		passerelle.save(personne);
 		return personne;
 	}
 	
 	/**
-	 * CrÈÈe un Candidat de type Èquipe. Ceci est le seul moyen, il n'y a pas
+	 * Cr√©√©e une Candidat de type √©quipe. Ceci est le seul moyen, il n'y a pas
 	 * de constructeur public dans {@link Equipe}.
 	 * @param nom
 	 * @param prenom
@@ -130,22 +129,23 @@ public class Inscriptions implements Serializable
 	{
 		Equipe equipe = new Equipe(this, nom);
 		candidats.add(equipe);
+		passerelle.save(equipe);
 		return equipe;
 	}
 	
-	void delete(Competition competition)
+	void remove(Competition competition)
 	{
 		competitions.remove(competition);
 	}
-	
-	void delete(Candidat candidat)
-	{
-		candidats.remove(candidat);
+
+	void remove(Candidat candidat) 
+	{	
+		candidats.remove(candidat);	
 	}
 	
 	/**
 	 * Retourne l'unique instance de cette classe.
-	 * CrÈe cet objet s'il n'existe dÈj√†.
+	 * Cr√©e cet objet s'il n'existe d√©j√ .
 	 * @return l'unique objet de type {@link Inscriptions}.
 	 */
 	
@@ -162,19 +162,19 @@ public class Inscriptions implements Serializable
 	}
 
 	/**
-	 * Retourne un object inscriptions vide. Ne modifie pas les compÈtitions
-	 * et candidats dÈj√† existants.
+	 * Retourne un object inscriptions vide. Ne modifie pas les comp√©titions
+	 * et candidats d√©j√  existants.
 	 */
 	
-	public Inscriptions reinitialiser()
+	public static Inscriptions reinitialiser()
 	{
 		inscriptions = new Inscriptions();
 		return getInscriptions();
 	}
 
 	/**
-	 * Efface toutes les modifications sur Inscriptions depuis la derniËre sauvegarde.
-	 * Ne modifie pas les compÈtitions et candidats dÈj√† existants.
+	 * Efface toutes les modifications sur Inscriptions depuis la derni√®re sauvegarde.
+	 * Ne modifie pas les comp√©titions et candidats d√©j√  existants.
 	 */
 	
 	public Inscriptions recharger()
@@ -209,7 +209,7 @@ public class Inscriptions implements Serializable
 	
 	/**
 	 * Sauvegarde le gestionnaire pour qu'il soit ouvert automatiquement 
-	 * lors d'une exÈcution ultÈrieure du programme.
+	 * lors d'une ex√©cution ult√©rieure du programme.
 	 * @throws IOException 
 	 */
 	
@@ -244,33 +244,21 @@ public class Inscriptions implements Serializable
 			+ "\nCompetitions  " + getCompetitions().toString();
 	}
 	
-//	public static void main(String[] args)
-//	{
-//		Inscriptions inscriptions = Inscriptions.getInscriptions();
-//		SortedSet<Competition> competitions = inscriptions.getCompetitions();
-//		Competition flechettes = inscriptions.createCompetition("Mondial de fl√©chettes", LocalDate.of(2020, 01, 01), false);
-//		Personne tony = inscriptions.createPersonne("Tony", "Dent de plomb", "azerty"), 
-//				 boris = inscriptions.createPersonne("Boris", "le Hachoir", "ytreza");
-//		flechettes.add(tony);
-//		Equipe lesManouches = inscriptions.createEquipe("Les Manouches");
-//		lesManouches.add(boris);
-//		lesManouches.add(tony);
-//		System.out.println(inscriptions);
-//		System.out.println(competitions);
-//		System.out.println(flechettes.getDateCloture());
-//		flechettes.setDateCloture(LocalDate.of(2021, 01, 01));
-//		System.out.println(flechettes.getDateCloture());	
-//		boris.delete();
-//		flechettes.delete();
-//		lesManouches.delete();
-//		System.out.println(inscriptions);
-//		try
-//		{
-//			inscriptions.sauvegarder();
-//		} 
-//		catch (IOException e)
-//		{
-//			System.out.println("Sauvegarde impossible." + e);
-//		}
-//	}
+	public static void main(String[] args)
+	{
+		
+		passerelle lien = new passerelle();
+		lien.open();
+		
+        Inscriptions inscriptions = Inscriptions.reinitialiser();
+        DialogUtil personnelc = new DialogUtil(inscriptions);
+        personnelc.start();
+		
+		lien.close();
+		
+	}
+
+
+
+	
 }

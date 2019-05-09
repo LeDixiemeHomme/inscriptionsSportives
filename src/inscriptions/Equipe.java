@@ -1,22 +1,34 @@
 package inscriptions;
 
 import java.util.Collections;
-import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
-import static org.junit.Assert.assertTrue;
+import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+import org.hibernate.annotations.SortNatural;
 
 /**
- * Représente une Equipe. C'est-à -dire un ensemble de personnes pouvant 
- * s'inscrire à  une compétition.
+ * Représente une Equipe. C'est-à-dire un ensemble de personnes pouvant 
+ * s'inscrire à une compétition.
  * 
  */
 
+@Entity
 public class Equipe extends Candidat
 {
 	private static final long serialVersionUID = 4147819927233466035L;
+	
+	
+	@ManyToMany
+	@Cascade(value = { CascadeType.ALL })
+	@SortNatural
 	private SortedSet<Personne> membres = new TreeSet<>();
+	
+	
 	
 	Equipe(Inscriptions inscriptions, String nom)
 	{
@@ -54,21 +66,6 @@ public class Equipe extends Candidat
 	{
 		membre.remove(this);
 		return membres.remove(membre);
-	}
-
-	/**
-	 * Retourne les personnes que l'on peut ajouter dans cette équipe.
-	 * @return les personnes que l'on peut ajouter dans cette équipe.
-	 */
-	
-	public Set<Personne> getPersonnesAAjouter()
-	{
-		// TODO retourner les personnes que l'on peut ajouter dans cette Ã©quipe.
-		Set<Personne> PersonneAAjouter = new TreeSet<>();
-		for (Personne personnes : Inscriptions.getInscriptions().getPersonnes())
-			if (!getMembres().contains(personnes))
-				PersonneAAjouter.add(personnes);
-		return PersonneAAjouter;
 	}
 	
 	@Override
