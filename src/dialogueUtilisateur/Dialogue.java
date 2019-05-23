@@ -8,7 +8,7 @@ import java.text.SimpleDateFormat;
 import inscriptions.*;
 import java.util.ArrayList;
 
-import java.util.Date;
+import java.time.LocalDate;
 import commandLineMenus.*;
 
 import commandLineMenus.rendering.examples.util.InOut;
@@ -113,11 +113,10 @@ public class Dialogue {
 		 return new Option("Ajouter une compétition", "a", () -> {
 	            String dateCloture = InOut.getString("Entrer la date de clôture des inscriptions de la compétition (AAAA-MM-JJ) : ");
 				try {
-				  Date date = formatter.parse(dateCloture);
+				LocalDate date = LocalDate.parse(dateCloture);
 				  inscriptions.createCompetition(InOut.getString("nom : "), date, InOut.getInt("0 - Compétition de personnes \n1 - Compétition d'équipes : ")==1);
-				} catch (ParseException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+				} catch (Exception ex) {
+		              ex.printStackTrace();
 				}
 	           });
 	}

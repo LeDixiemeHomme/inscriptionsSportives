@@ -90,6 +90,11 @@ public class Personne extends Candidat
 	{
 		return Collections.unmodifiableSet(equipes);
 	}
+
+	/**
+	 * Ajoute une équipe à une personne
+	 * @param equipe
+	 */
 	
 	boolean add(Equipe equipe)
 	{
@@ -98,12 +103,21 @@ public class Personne extends Candidat
 		return equipes.add(equipe);
 	}
 
+	/**
+	 * Supprimer une équipe à une personne
+	 * @param equipe
+	 */
+
 	boolean remove(Equipe equipe)
 	{
 		equipes.remove(equipe);
 		passerelle.delete(equipe);
 		return equipes.remove(equipe);
 	}
+
+	/**
+	 * Supprime une personne de toutes les équipes.
+	 */
 	
 	public void delete()
 	{

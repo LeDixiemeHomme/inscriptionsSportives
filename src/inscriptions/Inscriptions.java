@@ -8,7 +8,7 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
 import java.util.Collections;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
@@ -91,7 +91,7 @@ public class Inscriptions implements Serializable
 	 */
 	
 	public Competition createCompetition(String nom, 
-			Date date, boolean enEquipe)
+			LocalDate date, boolean enEquipe)
 	{
 		Competition competition = new Competition(this, nom, date, enEquipe);
 		competitions.add(competition);

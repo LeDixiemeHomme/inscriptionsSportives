@@ -394,14 +394,14 @@ public class PanelCompetition extends PanelAffNum implements ActionListener{
 			String dateCloture = datecompet.getText();
 			//Date localDate = null;
 			try {
-				Date localDate = formatter.parse(dateCloture);
+				LocalDate localDate = LocalDate.parse(dateCloture);
 				if(equipe.isSelected() == true) 
 					enEquipe = true;
 				else
 					enEquipe = false;
 				Inscriptions.getInscriptions().createCompetition(nomCompet, localDate, enEquipe);
 	            System.out.println("La compétition, " + nomCompet + " a était créée avec succès");
-			} catch (ParseException e1) {
+			} catch (Exception e1) {
 				System.out.println("Veuillez respecter le format de la date 'yyyy-mm-dd' ! " + e1);
 			}
 		}
@@ -422,10 +422,10 @@ public class PanelCompetition extends PanelAffNum implements ActionListener{
 			
 			String dateCloture = datecompet.getText();
 			try {
-				Date localDate = formatter.parse(dateCloture);
+				LocalDate localDate = LocalDate.parse(dateCloture);
 				compCourante.setDateCloture(localDate);
 				compCourante.setNom(textediter.getText());
-			} catch (ParseException e1) {
+			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
 			passerelle.save(compCourante);

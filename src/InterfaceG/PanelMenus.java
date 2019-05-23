@@ -29,8 +29,8 @@ import javax.swing.JPanel;
 public class PanelMenus  extends JPanel implements ActionListener {
 	
 	private JButton equipe;
-	private JButton competition;
 	private JButton personne;
+	private JButton competition;
 	private JButton quitter;
 	private JLabel label;
 	private JLabel titre;

@@ -45,6 +45,15 @@ public abstract class Candidat implements Comparable<Candidat>, Serializable
 		this.nom = nom;
 		competitions = new TreeSet<>();
 	}
+	
+	/**
+	 * Retourne le nom'idenfiant du candidat
+	 */
+	
+	public int getId()
+	{
+		return id;
+	}
 
 	/**
 	 * Retourne le nom du candidat.
@@ -75,11 +84,23 @@ public abstract class Candidat implements Comparable<Candidat>, Serializable
 	{
 		return Collections.unmodifiableSet(competitions);
 	}
+
+	/**
+	 * Ajoute une compétition à un candidat
+	 * @param competition
+	 * @return
+	 */
 	
 	boolean add(Competition competition)
 	{
 		return competitions.add(competition);
 	}
+
+	/**
+	 * Supprimer une compétition à un candidat
+	 * @param competition
+	 * @return
+	 */
 
 	boolean remove(Competition competition)
 	{

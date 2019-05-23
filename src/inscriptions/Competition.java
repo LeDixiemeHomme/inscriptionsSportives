@@ -2,7 +2,7 @@ package inscriptions;
 
 import java.io.Serializable;
 import java.util.Collections;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -31,24 +31,20 @@ public class Competition implements Comparable<Competition>, Serializable
 	private Inscriptions inscriptions;
 	
 	private String nom;
-
-
 	
 	@ManyToMany
 	@Cascade(value = { CascadeType.ALL })
 	@SortNatural
 	private Set<Candidat> candidats;
 	
-	
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date dateCloture;
+	private LocalDate dateCloture;
 	
 	@Column(columnDefinition="tinyint(1) default 0")
 	private boolean enEquipe = false;
 	
 	
 
-	Competition(Inscriptions inscriptions, String nom, Date dateCloture, boolean enEquipe)
+	Competition(Inscriptions inscriptions, String nom, LocalDate dateCloture, boolean enEquipe)
 	{
 		this.enEquipe = enEquipe;
 		this.inscriptions = inscriptions;
@@ -81,14 +77,10 @@ public class Competition implements Comparable<Competition>, Serializable
 	 * faux si les inscriptions sont closes.
 	 * @return 
 	 */
-	
+
 	public boolean inscriptionsOuvertes()
 	{
-		Date DateSys = new Date();
-		if(DateSys.after(getDateCloture()))
-			return false;
-		else
-			return true;
+		return this.dateCloture.isAfter( LocalDate.now() );
 	}
 	
 	/**
@@ -96,7 +88,7 @@ public class Competition implements Comparable<Competition>, Serializable
 	 * @return
 	 */
 	
-	public Date getDateCloture()
+	public LocalDate getDateCloture()
 	{
 		return dateCloture;
 	}
@@ -117,11 +109,10 @@ public class Competition implements Comparable<Competition>, Serializable
 	 * @param dateCloture
 	 */
 	
-	public void setDateCloture(Date dateCloture)
+	public void setDateCloture(LocalDate dateCloture)
 	{
-		// TODO vérifier que l'on avance pas la date.
-		if (dateCloture.after(this.dateCloture))
-			System.out.println("Vous ne pouvez pas avancer la date");
+		if (dateCloture.isAfter(this.dateCloture))
+			throw new RuntimeException("Vous ne pouvez pas avancer la date");
 		else
 			this.dateCloture = dateCloture;
 	}
@@ -146,12 +137,11 @@ public class Competition implements Comparable<Competition>, Serializable
 	
 	public boolean add(Personne personne)
 	{
-		// TODO vérifier que la date de clôture n'est pas passée
 		boolean inscriptions = inscriptionsOuvertes();
 		if (enEquipe)
-			throw new RuntimeException();
+			throw new RuntimeException("Cette compétition est réservée aux équipes !");
 		else if(!inscriptions)
-			throw new RuntimeException();
+			throw new RuntimeException("Les inscriptions sont closes !");
 		personne.add(this);
  		return candidats.add(personne);
 	}
@@ -168,9 +158,9 @@ public class Competition implements Comparable<Competition>, Serializable
 	{
 		boolean inscriptions = inscriptionsOuvertes();
 		if (!enEquipe)
-			throw new RuntimeException();
+			throw new RuntimeException("Cette compétitions est réservée aux personnes !");
 		else if (!inscriptions)
-			throw new RuntimeException();
+			throw new RuntimeException("Les inscriptions sont closes !");
 		equipe.add(this);
 		return candidats.add(equipe);
 	}

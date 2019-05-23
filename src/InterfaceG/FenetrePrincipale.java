@@ -1,5 +1,7 @@
 package InterfaceG;
 
+import java.time.LocalDate;
+
 import java.awt.BorderLayout;
 import java.awt.Color; 
 
@@ -14,7 +16,7 @@ public class FenetrePrincipale extends JFrame {
 	  public FenetrePrincipale(){   
 		  
 		    this.setTitle("Inscriptions Sportives M2L");
-		    this.setSize(900, 900);
+		    this.setSize(800, 500);
 		    this.setLocationRelativeTo(null);     
 		    
 		    JPanel background = new JPanel();

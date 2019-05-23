@@ -12,16 +12,19 @@ class PanelAffNum extends JPanel {
 	public PanelAffNum(int num) {
 		this.numPage = num;
 	}
+	
 	public int getNumPage() {
 		return numPage;
 	}
+	
 	public void setNumPage(int n) {
-		numPage = n;
+		this.numPage = n;
 	}
 	
 	public void menuequipebis() {
 		
 	}
+	
 	public void menucompetitionbis() {
 		
 	}
