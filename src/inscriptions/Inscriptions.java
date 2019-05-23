@@ -12,8 +12,8 @@ import java.util.Date;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
-import esDialUtil.DialogUtil;
-import hibernateis.passerelle;
+import dialogueUtilisateur.Dialogue;
+import hibernate.passerelle;
 /**
  * Point d'entrée dans l'application, un seul objet de type Inscription
  * permet de gérer les compétitions, candidats (de type equipe ou personne)
@@ -251,7 +251,7 @@ public class Inscriptions implements Serializable
 		lien.open();
 		
         Inscriptions inscriptions = Inscriptions.reinitialiser();
-        DialogUtil personnelc = new DialogUtil(inscriptions);
+        Dialogue personnelc = new Dialogue(inscriptions);
         personnelc.start();
 		
 		lien.close();

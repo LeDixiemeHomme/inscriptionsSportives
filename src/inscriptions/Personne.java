@@ -13,7 +13,7 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.SortNatural;
 
-import hibernateis.passerelle;
+import hibernate.passerelle;
 
 /**
  * Représente une personne physique pouvant s'inscrire à une compétition.
