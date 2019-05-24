@@ -84,7 +84,7 @@ public class PanelMenus  extends JPanel implements ActionListener {
 	    gbc.gridwidth = 2;
 	    page.add(competition, gbc);
 		gbc.gridx = 0;
-	    gbc.gridy = 8;
+	    gbc.gridy = 10;
 	    gbc.gridheight = 2;
 	    gbc.gridwidth = 2;
 	    page.add(quitter, gbc);
@@ -143,9 +143,11 @@ public class PanelMenus  extends JPanel implements ActionListener {
 	    gbc.gridy = 6;
 	    gbc.gridheight = 2;
 	    gbc.gridwidth = 2;
-	    page.add(competition, gbc);
+	    page.add(competition, gbc); 
 		gbc.gridx = 0;
 	    gbc.gridy = 8;
+		gbc.gridx = 0;
+	    gbc.gridy = 10;
 	    gbc.gridheight = 2;
 	    gbc.gridwidth = 2;
 	    page.add(quitter, gbc);

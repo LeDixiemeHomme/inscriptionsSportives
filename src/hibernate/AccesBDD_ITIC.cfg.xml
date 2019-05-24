@@ -5,12 +5,12 @@
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.connection.driver_class">org.gjt.mm.mysql.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mysql://192.168.182.129/hibernate</property>
-        <property name="hibernate.connection.username">hibernate</property>
-        <property name="hibernate.connection.password">hibernate</property>
+        <property name="hibernate.connection.url">jdbc:mysql://172.16.0.3/bvalle</property>
+        <property name="hibernate.connection.username">bvalle</property>
+        <property name="hibernate.connection.password">azerty</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
         
-            <property name="hbm2ddl.auto">update</property>
+            <property name="hbm2ddl.auto">create</property>
 
         <property name="hibernate.show_sql">false</property>
         <property name="jta.UserTransaction">

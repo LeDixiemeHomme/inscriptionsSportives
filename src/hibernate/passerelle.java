@@ -17,7 +17,8 @@ public class passerelle
 {
 	private static Session session = null;
 	private static SessionFactory sessionFactory = null;
-	private static final String CONF_FILE = "hibernate/AccesBDD.cfg.xml";
+	//private static final String CONF_FILE = "hibernate/AccesBDD.cfg.xml";
+	private static final String CONF_FILE = "hibernate/AccesBDD_ITIC.cfg.xml";
 	private static Transaction transaction = null;
 	
 	static void initHibernate()

@@ -25,12 +25,12 @@ import inscriptions.Equipe;
 import inscriptions.Inscriptions;
 import inscriptions.Personne;
 
-
-public class PanelEquipe  extends PanelAffNum implements ActionListener{
+public class PanelEquipe  extends PanelAffNum implements ActionListener {
+	
+	private JLabel titre;
 	private JButton creer;
 	private JButton lister;
 	private JButton selectionner;
-	private JLabel titre;
 	private JButton valider;
 	private JLabel label;
 	private int x = 0;
@@ -50,7 +50,7 @@ public class PanelEquipe  extends PanelAffNum implements ActionListener{
 	private static Personne personneCourante;
 	
 	public PanelEquipe() {
-		super(1);
+		super(1);	
 		this.setLayout(new GridBagLayout());
 	    GridBagConstraints gbc = new GridBagConstraints();
 	    titre = new JLabel("Menu Equipe");
@@ -61,8 +61,6 @@ public class PanelEquipe  extends PanelAffNum implements ActionListener{
 	    lister.addActionListener(this);
 	    selectionner = new JButton("Selectionner une Equipe");
 	    selectionner.addActionListener(this);
-
-
 	    
 	    gbc.gridx = 0;
 	    gbc.gridy = 0;
@@ -147,6 +145,7 @@ public class PanelEquipe  extends PanelAffNum implements ActionListener{
 		this.add(test);
 		this.revalidate();
 	}
+	
 	public void selectionnerEquipe() {
 		setNumPage(2);
 		this.removeAll();
