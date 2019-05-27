@@ -40,6 +40,11 @@ public class Personne extends Candidat
 		this.mail = mail;
 		equipes = new TreeSet<>();
 	}
+	
+	Personne()
+	{
+		
+	}
 
 	/**
 	 * Retourne le prénom de la personne.
@@ -110,8 +115,6 @@ public class Personne extends Candidat
 
 	boolean remove(Equipe equipe)
 	{
-		equipes.remove(equipe);
-		passerelle.delete(equipe);
 		return equipes.remove(equipe);
 	}
 
@@ -121,9 +124,9 @@ public class Personne extends Candidat
 	
 	public void delete()
 	{
+		super.delete();
 		for (Equipe e : equipes)
 			e.remove(this);
-		super.delete();
 	}
 	
 	@Override

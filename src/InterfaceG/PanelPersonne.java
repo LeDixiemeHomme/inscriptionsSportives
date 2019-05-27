@@ -56,8 +56,6 @@ public class PanelPersonne  extends PanelAffNum implements ActionListener{
     private JButton send;
 	private int x;
 	
-
-	
 	
 	public PanelPersonne() {
 		super(1);

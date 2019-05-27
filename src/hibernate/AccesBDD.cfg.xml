@@ -12,7 +12,7 @@
         
             <property name="hbm2ddl.auto">update</property>
 
-        <property name="hibernate.show_sql">false</property>
+        <property name="hibernate.show_sql">true</property>
         <property name="jta.UserTransaction">
         	java:comp/UserTransaction</property>
         <mapping class="inscriptions.Candidat" />

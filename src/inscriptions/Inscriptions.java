@@ -31,6 +31,7 @@ public class Inscriptions implements Serializable
 
 	private Inscriptions()
 	{
+		
 	}
 	
 	/**
@@ -136,11 +137,13 @@ public class Inscriptions implements Serializable
 	void remove(Competition competition)
 	{
 		competitions.remove(competition);
+		passerelle.save(competition);
 	}
 
 	void remove(Candidat candidat) 
 	{	
 		candidats.remove(candidat);	
+		passerelle.save(candidat);
 	}
 	
 	/**

@@ -453,6 +453,7 @@ public class PanelCompetition extends PanelAffNum implements ActionListener{
 		
 		
 	}
+	
 	public Competition getCompetitionCourante(){
 		return compCourante;
 	}

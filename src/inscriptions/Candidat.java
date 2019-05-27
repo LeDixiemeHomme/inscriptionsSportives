@@ -46,6 +46,12 @@ public abstract class Candidat implements Comparable<Candidat>, Serializable
 		competitions = new TreeSet<>();
 	}
 	
+	@SuppressWarnings("unused")
+	Candidat()
+	{
+		
+	}
+	
 	/**
 	 * Retourne le nom'idenfiant du candidat
 	 */
@@ -91,9 +97,9 @@ public abstract class Candidat implements Comparable<Candidat>, Serializable
 	 * @return
 	 */
 	
-	boolean add(Competition competition)
+	void add(Competition competition)
 	{
-		return competitions.add(competition);
+		 competitions.add(competition);
 	}
 
 	/**
@@ -102,9 +108,9 @@ public abstract class Candidat implements Comparable<Candidat>, Serializable
 	 * @return
 	 */
 
-	boolean remove(Competition competition)
+	void remove(Competition competition)
 	{
-		return competitions.remove(competition);
+		competitions.remove(competition);
 	}
 
 	/**
@@ -113,8 +119,8 @@ public abstract class Candidat implements Comparable<Candidat>, Serializable
 	
 	public void delete()
 	{
-		for (Competition c : competitions)
-			c.remove(this);
+//		for (Competition c : competitions)
+//			c.remove(this);
 		inscriptions.remove(this);
 	}
 	

@@ -63,10 +63,16 @@ public class PanelMenus  extends JPanel implements ActionListener {
 			}
 		});
 	    
-	    gbc.gridx = 0;
-	    gbc.gridy = 0;
-	    gbc.gridheight = 2;
-	    gbc.gridwidth = 2;
+	    gbc.gridx = 0; //Specifies the cell containing the leading edge of the component's display area,
+	    			   //where the first cell in a row has gridx=0.
+	    
+	    gbc.gridy = 0; //Specifies the cell at the top of the component's display area, 
+	    			   //where the topmost cell has gridy=0.
+	    
+	    gbc.gridheight = 2; //Specifies the number of cells in a column for the component's display area.
+	    
+	    gbc.gridwidth = 2; //Specifies the number of cells in a row for the component's display area.
+	    
 	    page.add(titre, gbc);
 	    gbc.gridx = 0;
 	    gbc.gridy = 2;
@@ -84,7 +90,7 @@ public class PanelMenus  extends JPanel implements ActionListener {
 	    gbc.gridwidth = 2;
 	    page.add(competition, gbc);
 		gbc.gridx = 0;
-	    gbc.gridy = 10;
+	    gbc.gridy = 8;
 	    gbc.gridheight = 2;
 	    gbc.gridwidth = 2;
 	    page.add(quitter, gbc);
@@ -147,7 +153,7 @@ public class PanelMenus  extends JPanel implements ActionListener {
 		gbc.gridx = 0;
 	    gbc.gridy = 8;
 		gbc.gridx = 0;
-	    gbc.gridy = 10;
+	    gbc.gridy = 8;
 	    gbc.gridheight = 2;
 	    gbc.gridwidth = 2;
 	    page.add(quitter, gbc);
@@ -224,7 +230,9 @@ public class PanelMenus  extends JPanel implements ActionListener {
 		break;
 		}
 	}
+	
 	@Override
+	
 	
 	public void actionPerformed(ActionEvent arg0) {
 		if(arg0.getSource() == equipe) {

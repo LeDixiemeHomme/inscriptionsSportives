@@ -11,6 +11,8 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.SortNatural;
 
+import hibernate.passerelle;
+
 /**
  * Représente une Equipe. C'est-à-dire un ensemble de personnes pouvant 
  * s'inscrire à une compétition.
@@ -22,17 +24,19 @@ public class Equipe extends Candidat
 {
 	private static final long serialVersionUID = 4147819927233466035L;
 	
-	
 	@ManyToMany
 	@Cascade(value = { CascadeType.ALL })
 	@SortNatural
 	private SortedSet<Personne> membres = new TreeSet<>();
-	
-	
-	
+		
 	Equipe(Inscriptions inscriptions, String nom)
 	{
 		super(inscriptions, nom);
+	}
+	
+	Equipe()
+	{
+		
 	}
 
 	/**
@@ -64,7 +68,7 @@ public class Equipe extends Candidat
 	
 	public boolean remove(Personne membre)
 	{
-		membre.remove(this);
+		membre.remove(this);	
 		return membres.remove(membre);
 	}
 	

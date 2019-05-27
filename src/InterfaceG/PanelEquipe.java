@@ -127,9 +127,12 @@ public class PanelEquipe  extends PanelAffNum implements ActionListener {
 		test.setLayout(new GridBagLayout());
 	    GridBagConstraints gbc = new GridBagConstraints();
 		ArrayList<Equipe> teams = new ArrayList<Equipe>();
+		System.out.println(teams);
 		teams = (ArrayList) passerelle.getData("Equipe");
 		
+		System.out.println(teams);
 		for(Equipe e : teams) {
+			System.out.println(e.getNom());
 			JLabel area = new JLabel();
 			area.setText(area.getText() + "\n" + e.getNom());
 			gbc.gridy = x;
@@ -168,6 +171,7 @@ public class PanelEquipe  extends PanelAffNum implements ActionListener {
 		this.add(test);
 		this.revalidate();
 	}
+	
 	@Override
 	public void menuequipebis() {
 		setNumPage(2);
@@ -241,39 +245,31 @@ public class PanelEquipe  extends PanelAffNum implements ActionListener {
 		this.add(test);
 		this.revalidate();
 	}
+	
 	public void supprimerEquipe() {
-//		setNumPage(2);
-//		this.removeAll();
-//		
-//		//equipeCourante = (Equipe) list.getSelectedItem();
-//		JPanel test = new JPanel();
-//		test.setLayout(new GridBagLayout());
-//	    GridBagConstraints gbc = new GridBagConstraints();
-//	    JLabel label = new JLabel("Voulez vous supprimer l'équipe " + equipeCourante.getNom());
-//	    supprimerequipe = new JButton("Supprimer");
-//	    supprimerequipe.addActionListener(this);
-//	    
-//		gbc.gridx = 1;
-//	    gbc.gridy = 0;
-//		test.add(label, gbc);
-//		
-//		gbc.gridx = 2;
-//	    gbc.gridy = 1;
-//		test.add(supprimerequipe, gbc);
-//		
-//		this.add(test);
-//		this.revalidate();
-
-			int s = JOptionPane.showConfirmDialog(this,"Etes-vous sûr de vouloir supprimer : " + equipeCourante.getNom() + " ?",
-	                "Confirmation",
-	                JOptionPane.YES_NO_OPTION);
-	        if(s == 0) {
-	            equipeCourante.delete();
-	            JOptionPane.showMessageDialog(this,
-	                    "L'équipe a bien été supprimée !");
-	        }
-	        this.removeAll();
-	        PanelEquipe test = new PanelEquipe();
+		setNumPage(5);
+		this.removeAll();
+		
+		equipeCourante = (Equipe) list.getSelectedItem();
+		JPanel test = new JPanel();
+		test.setLayout(new GridBagLayout());
+	    GridBagConstraints gbc = new GridBagConstraints();
+	    JLabel label = new JLabel("Supprimer l'équipe " + equipeCourante.getNom());
+	    supprimerequipe = new JButton("Supprimer");
+	    supprimerequipe.addActionListener(this);
+	    
+		gbc.gridx = 1;
+	    gbc.gridy = 0;
+		test.add(label, gbc);
+		
+		gbc.gridx = 2;
+	    gbc.gridy = 1;
+		test.add(supprimerequipe, gbc);
+		
+		this.add(test);
+		this.revalidate();
+//	        this.removeAll();
+//	        PanelEquipe test = new PanelEquipe();
 	        this.add(test);
 			this.revalidate();
 			
@@ -330,6 +326,7 @@ public class PanelEquipe  extends PanelAffNum implements ActionListener {
 		
 		
 	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == creer){
@@ -359,17 +356,22 @@ public class PanelEquipe  extends PanelAffNum implements ActionListener {
 			this.editerEquipe();
 		}
 		if(e.getSource() == editerequipe) {
-			//equipeCourante = (Equipe) list.getSelectedItem();
+			equipeCourante = (Equipe) list.getSelectedItem();
 			equipeCourante.setNom(textediter.getText());
+			passerelle.save(equipeCourante);
 			System.out.println(equipeCourante.getNom());
+			
+			JOptionPane.showMessageDialog(this, "La nouvelle équipe, " + equipeCourante.getNom() + " a été modifiée avec succès");
 			}
 		
 		if(e.getSource() == suppreq) {
-			//equipeCourante = (Equipe) list.getSelectedItem();
+			equipeCourante = (Equipe) list.getSelectedItem(); 
 			this.supprimerEquipe();
 		}
 		if(e.getSource() == supprimerequipe) {
 			equipeCourante = (Equipe) list.getSelectedItem();  
+			equipeCourante.delete();
+			passerelle.delete(equipeCourante);
 			System.out.println(equipeCourante.getNom());
 			
 			JOptionPane.showMessageDialog(this, "L'équipe, " + equipeCourante.getNom() + " a bien été supprimée ");

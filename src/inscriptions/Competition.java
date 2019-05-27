@@ -53,6 +53,11 @@ public class Competition implements Comparable<Competition>, Serializable
 		candidats = new TreeSet<>();
 	}
 	
+	Competition()
+	{
+		
+	}
+	
 	/**
 	 * Retourne le nom de la compétition.
 	 * @return
@@ -102,6 +107,10 @@ public class Competition implements Comparable<Competition>, Serializable
 	{
 		return enEquipe;
 	}
+	
+	public void setEnEquipe(boolean enEquipe) {
+    	this.enEquipe = enEquipe;
+    }
 	
 	/**
 	 * Modifie la date de cloture des inscriptions. Il est possible de la reculer 
