@@ -79,8 +79,11 @@ public class Equipe extends Candidat
 	}
 	
 	@Override
-	public String toString()
-	{
-		return "Equipe " + super.toString();
-	}
+    public String toString() {
+    	if(getCompetitions().size() > 1)
+    		return "L'équipe "+getNom()+" est inscrite aux compétitions "+getCompetitions() + "\n";
+    	else
+    		return "L'équipe "+getNom()+" est inscrite à la compétition "+getCompetitions() + "\n";
+    	
+    }
 }

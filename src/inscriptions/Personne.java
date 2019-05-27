@@ -128,10 +128,38 @@ public class Personne extends Candidat
 		for (Equipe e : equipes)
 			e.remove(this);
 	}
+//	
+//	@Override
+//	public String toString()
+//	{
+//		return super.toString() + " membre de " + equipes.toString();
+//	}
+//	
 	
 	@Override
-	public String toString()
-	{
-		return super.toString() + " membre de " + equipes.toString();
+	public String toString() {
+		int id = getId();
+		String prenom = getPrenom();
+		String nom = getNom();
+		//String equipe = equipes.toString();
+		String email = getMail();
+		String resultat;
+		//if (equipe.equals("") || equipe == null) {
+			if (email.equals("") || email == null)
+				resultat = id + ". " + prenom + " " + nom
+						+ " n'est membre d'aucune équipe. Il n'a pas souhaité communiquer son adresse-email.";
+			else
+				resultat = id + ". " + prenom + " " + nom + " n'est membre d'aucune équipe. Son adresse e-mail est: "
+						+ email + ".";
+//		} else {
+//			if (email.equals("") || email == null)
+//				resultat = id + ". " + prenom + " " + nom + " est membre de l'équipe " + "\"" + equipe
+//						+ "\". Il n'a pas souhaité communiquer son adresse-email.";
+//			else
+//				resultat = id + ". " + prenom + " " + nom + " est membre de l'équipe " + "\"" + equipe
+//						+ "\". Son adresse e-mail est: " + email;
+//		}
+		return resultat;
 	}
+		
 }

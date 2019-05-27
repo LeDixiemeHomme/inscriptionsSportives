@@ -127,10 +127,8 @@ public class PanelEquipe  extends PanelAffNum implements ActionListener {
 		test.setLayout(new GridBagLayout());
 	    GridBagConstraints gbc = new GridBagConstraints();
 		ArrayList<Equipe> teams = new ArrayList<Equipe>();
-		System.out.println(teams);
 		teams = (ArrayList) passerelle.getData("Equipe");
 		
-		System.out.println(teams);
 		for(Equipe e : teams) {
 			System.out.println(e.getNom());
 			JLabel area = new JLabel();
@@ -370,20 +368,28 @@ public class PanelEquipe  extends PanelAffNum implements ActionListener {
 		}
 		if(e.getSource() == supprimerequipe) {
 			equipeCourante = (Equipe) list.getSelectedItem();  
-			equipeCourante.delete();
+			System.out.println(equipeCourante);
+//			equipeCourante.delete();
 			passerelle.delete(equipeCourante);
 			System.out.println(equipeCourante.getNom());
 			
 			JOptionPane.showMessageDialog(this, "L'équipe, " + equipeCourante.getNom() + " a bien été supprimée ");
-			equipeCourante.delete();
 		}
 		if(e.getSource() == ajoutereq) {
 			this.ajouterEquipe();
 		}
 		if(e.getSource() == selectjoueur) {
-			//equipeCourante = (Equipe) list.getSelectedItem();
+			equipeCourante = (Equipe) list.getSelectedItem();
 			personneCourante = (Personne) list2.getSelectedItem();
 			equipeCourante.add(personneCourante);
+			passerelle.save(equipeCourante);
+			passerelle.save(personneCourante);
+			System.out.println(equipeCourante.getNom());
+			System.out.println("intègre");
+			System.out.println(personneCourante.getNom());
+			
+			JOptionPane.showMessageDialog(this, "Le joueur, " + personneCourante.getNom() + " a été intégré dans l'équipe "
+					+  equipeCourante.getNom() + " avec succès");
 		}
 		if(e.getSource() == listereq) {
 			

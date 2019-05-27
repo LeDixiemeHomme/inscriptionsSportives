@@ -119,8 +119,8 @@ public abstract class Candidat implements Comparable<Candidat>, Serializable
 	
 	public void delete()
 	{
-//		for (Competition c : competitions)
-//			c.remove(this);
+		for (Competition c : competitions)
+			c.remove(this);
 		inscriptions.remove(this);
 	}
 	
@@ -129,11 +129,9 @@ public abstract class Candidat implements Comparable<Candidat>, Serializable
 	{
 		return getNom().compareTo(o.getNom());
 	}
-	
-	@Override
-	public String toString()
-	{
-		return "\n" + getNom() + " -> inscrit à " + getCompetitions();
-		
-	}
+
+    @Override
+    public String toString() {
+        return "\n" + getNom() + " -> inscrit à  " + getCompetitions();
+    }
 }
